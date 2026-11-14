@@ -1,0 +1,211 @@
+/* ==================================================
+   ST-Folio — 预设书页
+   暗红细边框 / 宋体 / 半透明底，跟随酒馆主题变量
+   只服务「AI 回复配置」预设面板
+   ================================================== */
+
+:root {
+    --stf-accent: #a45050;
+    --stf-accent-soft: rgba(164, 80, 80, 0.12);
+    --stf-accent-line: rgba(164, 80, 80, 0.45);
+    --stf-serif: 'Noto Serif SC', 'Songti SC', 'SimSun', 'STSong', serif;
+    --stf-mono: 'Courier New', Courier, monospace;
+}
+
+/* ==================================================
+   1. 折叠标题栏
+   ================================================== */
+
+#left-nav-panel .stf-fold-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 14px 0 10px !important;
+    padding: 8px 10px 8px 12px !important;
+    background: transparent !important;
+    border: none !important;
+    border-left: 3px solid var(--stf-accent) !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--SmartThemeBorderColor) 70%, transparent) !important;
+    box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.18) !important;
+    color: var(--SmartThemeBodyColor) !important;
+    font-family: var(--stf-serif);
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#left-nav-panel .stf-fold-header:hover {
+    background: var(--stf-accent-soft) !important;
+}
+
+#left-nav-panel .stf-fold-header:focus-visible {
+    outline: 1px dashed var(--stf-accent-line);
+    outline-offset: 2px;
+}
+
+#left-nav-panel .stf-fold-header.is-collapsed {
+    margin-bottom: 8px !important;
+}
+
+.stf-fold-mark {
+    flex: 0 0 auto;
+    color: var(--stf-accent);
+    font-size: 11px;
+    line-height: 1;
+}
+
+.stf-fold-titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-width: 0;
+}
+
+.stf-fold-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    color: var(--SmartThemeBodyColor);
+    white-space: nowrap;
+}
+
+.stf-fold-sub {
+    font-family: var(--stf-mono);
+    font-size: 8px;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    color: color-mix(in srgb, var(--SmartThemeBodyColor) 42%, transparent);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.stf-fold-value {
+    margin-left: auto;
+    max-width: 42%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: var(--stf-mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: color-mix(in srgb, var(--SmartThemeBodyColor) 55%, transparent);
+}
+
+.stf-fold-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+}
+
+.stf-fold-caret {
+    flex: 0 0 auto;
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--stf-accent);
+    transform: rotate(0deg);
+    transition: transform 0.22s ease;
+}
+
+.stf-fold-header.is-collapsed .stf-fold-caret {
+    transform: rotate(-90deg);
+}
+
+/* 折叠后的显隐：只隐藏内容，不重建节点 */
+#respective-presets-block.stf-folded > * {
+    display: none !important;
+}
+
+#common-gen-settings-block.stf-folded > *,
+#respective-ranges-and-temps.stf-folded > * {
+    display: none !important;
+}
+
+#advanced-ai-config-block.stf-folded > #kobold_api-settings,
+#advanced-ai-config-block.stf-folded > #novel_api-settings,
+#advanced-ai-config-block.stf-folded > #textgenerationwebui_api-settings,
+#advanced-ai-config-block.stf-folded #openai_settings > *:not(.stf-entries-section) {
+    display: none !important;
+}
+
+#completion_prompt_manager.stf-folded {
+    display: none !important;
+}
+
+/* 预设条目容器在“高级选项”折叠时保持可见 */
+#openai_settings > .stf-entries-section {
+    display: block !important;
+}
+
+/* ==================================================
+   2. 滑动条锁定
+   ================================================== */
+
+.stf-lock-btn {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border: 1px solid var(--stf-accent-line);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--stf-accent);
+    font-family: var(--stf-serif);
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.stf-lock-btn:hover {
+    background: var(--stf-accent-soft);
+}
+
+.stf-lock-btn[data-locked="true"] {
+    background: rgba(164, 80, 80, 0.2);
+    border-color: var(--stf-accent);
+}
+
+.stf-lock-btn i {
+    font-size: 10px;
+}
+
+#left-nav-panel.stf-sliders-locked input[type="range"] {
+    cursor: not-allowed !important;
+    filter: saturate(0.55);
+}
+
+#left-nav-panel.stf-sliders-locked .neo-range-slider::-webkit-slider-thumb {
+    opacity: 0.75;
+}
+
+/* ==================================================
+   3. 窄屏适配
+   ================================================== */
+
+@media (max-width: 720px) {
+    #left-nav-panel .stf-fold-sub {
+        display: none;
+    }
+
+    .stf-fold-value {
+        max-width: 38%;
+    }
+}
+
+@media (max-width: 520px) {
+    .stf-fold-value {
+        display: none;
+    }
+}

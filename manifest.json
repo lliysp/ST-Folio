@@ -1,0 +1,10 @@
+{
+    "display_name": "ST-Folio (预设书页)",
+    "loading_order": 120,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "ST-Folio",
+    "version": "1.0.0"
+}
