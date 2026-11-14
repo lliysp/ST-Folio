@@ -24,7 +24,7 @@
 3. 粘贴本仓库的链接，点击确认即可。
 
 ### 方法二：手动安装
-将本仓库的 `manifest.json`、`index.js`、`style.css` 放入酒馆的 `public/scripts/extensions/third-party/ST-Archive` 目录下，重启酒馆。
+将本仓库的 `manifest.json`、`index.js`、`style.css` 放入酒馆的 `public/scripts/extensions/third-party/ST-Folio` 目录下，重启酒馆。
 
 ## 兼容性
 
