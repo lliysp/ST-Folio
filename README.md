@@ -13,18 +13,21 @@
 2. **四大模块点击折叠**
    顶端「预设 / PRESET」（显示当前预设名）、「参数调整 / PARAMETERS」、「高级选项 / ADVANCED」、「预设条目 / PRESET ENTRIES」全部改为点击标题栏折叠。折叠只给现有容器加 class，节点与原生事件全部保留。
 
-3. **主题化外观**
+3. **顶部提示归位**
+   酒馆自带的「单击滑块以手动输入值」提示和采样说明「?」图标原本相对面板绝对定位，面板内容滚动后仍悬浮在视口上方。现在它们被收进面板顶部的普通内容行，随面板一起滚动，不再遮挡预设条目。
+
+4. **主题化外观**
    所有样式都限定在 `#left-nav-panel` 与 `.stf-*` 命名空间内，颜色取自 `--SmartThemeBodyColor` / `--SmartThemeBorderColor` / `--SmartThemeBlurTintColor`。
 
-## 安装方法
+## 安装
 
-### 方法一：酒馆一键安装（推荐）
-1. 打开SillyTavern，点击顶部菜单的**“扩展”**。
-2. 点击 **Install Extension**（安装扩展）。
-3. 粘贴本仓库的链接，点击确认即可。
+将本目录放入：
 
-### 方法二：手动安装
-将本仓库的 `manifest.json`、`index.js`、`style.css` 放入酒馆的 `public/scripts/extensions/third-party/ST-Folio` 目录下，重启酒馆。
+```
+public/scripts/extensions/third-party/ST-Folio/
+```
+
+确认存在 `manifest.json`、`index.js`、`style.css`、`README.md`，然后在酒馆「扩展」里启用 **ST-Folio (预设书页)**，刷新页面。
 
 ## 兼容性
 

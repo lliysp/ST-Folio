@@ -367,7 +367,54 @@
     }
 
     /* ==================================================
-       5. 启动
+       5. 面板顶部提示行
+       --------------------------------------------------
+       「单击滑块以手动输入值」提示与采样说明「?」原本是
+       相对面板绝对定位的，面板内容滚动时仍悬浮在视口上方。
+       这里把它们收进顶部的一行普通内容，随面板一起滚动。
+       ================================================== */
+
+    const TOPBAR_ID = 'stf-panel-topbar';
+
+    function setupPanelTopbar() {
+        const panel = byId('left-nav-panel');
+        if (!panel) return false;
+
+        const tips = byId('clickSlidersTips');
+        const help = panel.querySelector(':scope > a.topRightInset');
+        const existing = byId(TOPBAR_ID);
+
+        if (!tips && !help) return Boolean(existing);
+
+        let bar = existing;
+        if (!bar) {
+            bar = document.createElement('div');
+            bar.id = TOPBAR_ID;
+            bar.className = 'stf-panel-topbar';
+
+            const flow = qs('.scrollableInner', panel);
+            if (flow) {
+                flow.insertBefore(bar, flow.firstChild);
+            } else {
+                panel.insertBefore(bar, tips || help);
+            }
+        }
+
+        if (tips && tips.parentElement !== bar) {
+            tips.classList.add('stf-topbar-tips');
+            bar.appendChild(tips);
+        }
+
+        if (help && help.parentElement !== bar) {
+            help.classList.add('stf-topbar-help');
+            bar.appendChild(help);
+        }
+
+        return true;
+    }
+
+    /* ==================================================
+       6. 启动
        ================================================== */
 
     function boot() {
@@ -376,6 +423,7 @@
             params: false,
             advanced: false,
             entries: false,
+            topbar: false,
         };
 
         try {
@@ -383,6 +431,7 @@
             status.params = setupParamsModule();
             status.advanced = setupAdvancedModule();
             status.entries = setupEntriesModule();
+            status.topbar = setupPanelTopbar();
             applySliderLock();
         } catch (error) {
             console.warn(LOG, '初始化失败', error);

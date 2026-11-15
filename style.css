@@ -191,7 +191,54 @@
 }
 
 /* ==================================================
-   3. 窄屏适配
+   3. 面板顶部提示行
+   --------------------------------------------------
+   提示文字与「?」帮助图标改为普通流内内容，
+   跟随面板一起滚动，不再悬浮在视口顶部。
+   ================================================== */
+
+#stf-panel-topbar {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 2px 0 4px !important;
+    padding: 0 10px;
+}
+
+#stf-panel-topbar #clickSlidersTips {
+    position: static !important;
+    inset: auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center;
+    font-size: calc(var(--mainFontSize) * 0.78);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    color: color-mix(in srgb, var(--SmartThemeBodyColor) 50%, transparent);
+}
+
+#stf-panel-topbar a.topRightInset {
+    position: static !important;
+    inset: auto !important;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0 !important;
+    opacity: 0.55;
+    transition: opacity 0.2s ease;
+}
+
+#stf-panel-topbar a.topRightInset:hover {
+    opacity: 1;
+}
+
+/* ==================================================
+   4. 窄屏适配
    ================================================== */
 
 @media (max-width: 720px) {
